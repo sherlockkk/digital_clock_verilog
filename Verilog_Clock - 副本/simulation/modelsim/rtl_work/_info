@@ -1,0 +1,226 @@
+m255
+K3
+13
+cModel Technology
+Z0 dI:\Game\Verilog_Clock\simulation\modelsim
+vClock
+!i10b 1
+!s100 lTc;CiFe:2l^^n0hON^3R1
+I^7o24lmnP;C;5JzADL`7]1
+VOz:fe2_]7C@2_Ll>0`8:^1
+Z1 dI:\Game\Verilog_Clock\simulation\modelsim
+w1483683788
+8I:/Game/Verilog_Clock/Clock.v
+FI:/Game/Verilog_Clock/Clock.v
+L0 1
+Z2 OV;L;10.1d;51
+r1
+!s85 0
+31
+!s108 1483924350.042000
+!s107 I:/Game/Verilog_Clock/Clock.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/Clock.v|
+!s101 -O0
+Z3 o-vlog01compat -work work -O0
+Z4 !s92 -vlog01compat -work work +incdir+I:/Game/Verilog_Clock -O0
+n@clock
+vfenpin
+I^L5Ol>7f<6A`ZPUz;RY6D3
+VL[ogSb1c93=hmTTi?ch7X2
+R1
+w1483682163
+8I:/Game/Verilog_Clock/fenpin.v
+FI:/Game/Verilog_Clock/fenpin.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 0zXl`ogH0eQNoZIMU;8D[1
+!s85 0
+!s108 1483924349.897000
+!s107 I:/Game/Verilog_Clock/fenpin.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/fenpin.v|
+!s101 -O0
+vjishi
+I3]OTh:fd`MXb=Lj2U5:G?2
+Vz8SW8Vz`fP7:A<0d[b^W12
+R1
+w1483590306
+8I:/Game/Verilog_Clock/jishi.v
+FI:/Game/Verilog_Clock/jishi.v
+L0 2
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 9^VlGMIF0ANOkAg[IW6>_0
+!s85 0
+!s108 1483924349.757000
+!s107 I:/Game/Verilog_Clock/jishi.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/jishi.v|
+!s101 -O0
+vmodchose
+Ic9I9<1Y_]DKz;8LAjEPcl1
+V4dLQfaL34KiGC[=38^ffB2
+R1
+w1483590497
+8I:/Game/Verilog_Clock/modchose.v
+FI:/Game/Verilog_Clock/modchose.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 5oLGGla253^V9OQJVOWJR2
+!s85 0
+!s108 1483924348.391000
+!s107 I:/Game/Verilog_Clock/modchose.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/modchose.v|
+!s101 -O0
+vnaozhong
+IOgzJ7P^SW`d8A@WG<PW^V3
+VKeL3^HfZfD1>;@EB_O@h_0
+R1
+w1483590346
+8I:/Game/Verilog_Clock/naozhong.v
+FI:/Game/Verilog_Clock/naozhong.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 CJ>k;T7g]SU5X?7z3<PbH2
+!s85 0
+!s108 1483924349.617000
+!s107 I:/Game/Verilog_Clock/naozhong.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/naozhong.v|
+!s101 -O0
+vpaobiao
+I:_K8m]TPe=Q:@Z2B<QiJd0
+VE05jH;[033YXOBNIN[15R0
+R1
+w1483590327
+8I:/Game/Verilog_Clock/paobiao.v
+FI:/Game/Verilog_Clock/paobiao.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 =MWW?iHm7FbOD7JVRg>d50
+!s85 0
+!s108 1483924349.480000
+!s107 I:/Game/Verilog_Clock/paobiao.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/paobiao.v|
+!s101 -O0
+vprint1
+I61XW<0E7JlF@W@1^Pnb^]2
+V[mc6RZLcLc[HnT?hb:3Zo3
+R1
+w1483685290
+8I:/Game/Verilog_Clock/print1.v
+FI:/Game/Verilog_Clock/print1.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 1:Yc>neJM]32V`oWCMP6X2
+!s85 0
+!s108 1483924349.309000
+!s107 I:/Game/Verilog_Clock/print1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/print1.v|
+!s101 -O0
+vprint2
+IF2DQkKY_Ne4IgKHk7Lgfn3
+VG]`5=00ZFNjNH;Bh8C^5d0
+R1
+w1483683486
+8I:/Game/Verilog_Clock/print2.v
+FI:/Game/Verilog_Clock/print2.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 cK@;jdnJEJGcz?;T99f@:0
+!s85 0
+!s108 1483924349.134000
+!s107 I:/Game/Verilog_Clock/print2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/print2.v|
+!s101 -O0
+vprint3
+ICFoJ0<[Zz^9D_[0ZZDzYe0
+VIzRo55DnHDIcnLi49n?XE2
+R1
+w1483684372
+8I:/Game/Verilog_Clock/print3.v
+FI:/Game/Verilog_Clock/print3.v
+L0 2
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 8Ol_8fa?fc5>kI]J:mE>82
+!s85 0
+!s108 1483924349.006000
+!s107 I:/Game/Verilog_Clock/print3.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/print3.v|
+!s101 -O0
+vprint4
+I6a`Ykk6i06PIbW=^8FMM11
+V46?nPo>_b2`1ETmVBHS@M2
+R1
+w1483590367
+8I:/Game/Verilog_Clock/print4.v
+FI:/Game/Verilog_Clock/print4.v
+L0 2
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 O^O37k31J1T1a9e9D6K:P1
+!s85 0
+!s108 1483924348.871000
+!s107 I:/Game/Verilog_Clock/print4.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/print4.v|
+!s101 -O0
+vzhuangtai
+IMD9F27Kd2PER5l?fz@2Mb0
+V>d_1GF>[1_XJdH39nDzh^1
+R1
+w1483590261
+8I:/Game/Verilog_Clock/zhuangtai.v
+FI:/Game/Verilog_Clock/zhuangtai.v
+L0 2
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 h2d5LGY5FR^CAEEmi_[1@3
+!s85 0
+!s108 1483924348.621000
+!s107 I:/Game/Verilog_Clock/zhuangtai.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+I:/Game/Verilog_Clock|I:/Game/Verilog_Clock/zhuangtai.v|
+!s101 -O0

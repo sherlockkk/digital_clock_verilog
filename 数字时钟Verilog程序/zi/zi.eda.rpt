@@ -1,0 +1,119 @@
+EDA Netlist Writer report for zi
+Thu May 08 16:41:56 2008
+Version 6.0 Build 178 04/27/2006 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. EDA Netlist Writer Summary
+  3. Simulation Settings
+  4. Simulation Generated Files
+  5. Timing Analysis Settings
+  6. Timing Analysis Generated Files
+  7. EDA Netlist Writer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2006 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++------------------------------------------------------------------------+
+; EDA Netlist Writer Summary                                             ;
++--------------------------------+---------------------------------------+
+; EDA Netlist Writer Status      ; Successful - Thu May 08 16:41:56 2008 ;
+; Revision Name                  ; zi                                    ;
+; Top-level Entity Name          ; zi                                    ;
+; Family                         ; ACEX1K                                ;
+; Simulation Files Creation      ; Successful                            ;
+; Timing Analysis Files Creation ; Successful                            ;
++--------------------------------+---------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Simulation Settings                                                                                               ;
++--------------------------------------------------------------------------------------------+----------------------+
+; Option                                                                                     ; Setting              ;
++--------------------------------------------------------------------------------------------+----------------------+
+; Tool Name                                                                                  ; Active-HDL (Verilog) ;
+; Generate netlist for functional simulation only                                            ; Off                  ;
+; Time scale                                                                                 ; 1 ps                 ;
+; Truncate long hierarchy paths                                                              ; Off                  ;
+; Map illegal HDL characters                                                                 ; Off                  ;
+; Flatten buses into individual nodes                                                        ; Off                  ;
+; Maintain hierarchy                                                                         ; Off                  ;
+; Bring out device-wide set/reset signals as ports                                           ; Off                  ;
+; Enable glitch filtering                                                                    ; Off                  ;
+; Do not write top level VHDL entity                                                         ; Off                  ;
+; Disable setup and hold time violations detection in input registers of bi-directional pins ; Off                  ;
+; Architecture name in VHDL output netlist                                                   ; structure            ;
++--------------------------------------------------------------------------------------------+----------------------+
+
+
++---------------------------------------------------------+
+; Simulation Generated Files                              ;
++---------------------------------------------------------+
+; Generated Files                                         ;
++---------------------------------------------------------+
+; D:/STUDY PROGRAMS/设计/zi/simulation/activehdl/zi.vo    ;
+; D:/STUDY PROGRAMS/设计/zi/simulation/activehdl/zi_v.sdo ;
++---------------------------------------------------------+
+
+
++--------------------------------------------------------+
+; Timing Analysis Settings                               ;
++-------------------------------------+------------------+
+; Option                              ; Setting          ;
++-------------------------------------+------------------+
+; Tool Name                           ; PrimeTime (VHDL) ;
+; Time scale                          ; 1 ps             ;
+; Truncate long hierarchy paths       ; Off              ;
+; Map illegal HDL characters          ; Off              ;
+; Flatten buses into individual nodes ; Off              ;
++-------------------------------------+------------------+
+
+
++----------------------------------------------------------+
+; Timing Analysis Generated Files                          ;
++----------------------------------------------------------+
+; Generated Files                                          ;
++----------------------------------------------------------+
+; D:/STUDY PROGRAMS/设计/zi/timing/primetime/zi.vho        ;
+; D:/STUDY PROGRAMS/设计/zi/timing/primetime/zi_vhd.sdo    ;
+; D:/STUDY PROGRAMS/设计/zi/timing/primetime/zi_pt_vhd.tcl ;
++----------------------------------------------------------+
+
+
++-----------------------------+
+; EDA Netlist Writer Messages ;
++-----------------------------+
+Info: *******************************************************************
+Info: Running Quartus II EDA Netlist Writer
+    Info: Version 6.0 Build 178 04/27/2006 SJ Full Version
+    Info: Processing started: Thu May 08 16:41:54 2008
+Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off zi -c zi
+Info: Generated files "zi.vo" and "zi_v.sdo" in directory "D:/STUDY PROGRAMS/设计/zi/simulation/activehdl/" for EDA simulation tool
+Info: Generated files "zi.vho" and "zi_vhd.sdo" in directory "D:/STUDY PROGRAMS/设计/zi/timing/primetime/" for EDA timing analysis tool
+Info: Generated PrimeTime Tcl script file D:/STUDY PROGRAMS/设计/zi/timing/primetime/zi_pt_vhd.tcl
+Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
+    Info: Processing ended: Thu May 08 16:41:56 2008
+    Info: Elapsed time: 00:00:02
+
+

@@ -1,0 +1,467 @@
+Analysis & Synthesis report for Clock
+Wed Jan 11 09:44:54 2017
+Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Port Connectivity Checks: "print4:p4"
+ 13. Port Connectivity Checks: "fenpin:fen"
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
+ 16. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                    ;
++------------------------------------+--------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Jan 11 09:44:54 2017      ;
+; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
+; Revision Name                      ; Clock                                      ;
+; Top-level Entity Name              ; Clock                                      ;
+; Family                             ; Cyclone II                                 ;
+; Total logic elements               ; 566                                        ;
+;     Total combinational functions  ; 552                                        ;
+;     Dedicated logic registers      ; 263                                        ;
+; Total registers                    ; 263                                        ;
+; Total pins                         ; 37                                         ;
+; Total virtual pins                 ; 0                                          ;
+; Total memory bits                  ; 0                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Total PLLs                         ; 0                                          ;
++------------------------------------+--------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C8Q208C8        ;                    ;
+; Top-level entity name                                                      ; Clock              ; Clock              ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                    ;
++----------------------------------+-----------------+------------------------+-----------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path      ; Library ;
++----------------------------------+-----------------+------------------------+-----------------------------------+---------+
+; modchose.v                       ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/modchose.v  ;         ;
+; zhuangtai.v                      ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/zhuangtai.v ;         ;
+; print4.v                         ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/print4.v    ;         ;
+; print3.v                         ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/print3.v    ;         ;
+; print2.v                         ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/print2.v    ;         ;
+; print1.v                         ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/print1.v    ;         ;
+; paobiao.v                        ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/paobiao.v   ;         ;
+; jishi.v                          ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/jishi.v     ;         ;
+; fenpin.v                         ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/fenpin.v    ;         ;
+; Clock.v                          ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/Clock.v     ;         ;
+; baoshi.v                         ; yes             ; User Verilog HDL File  ; I:/Game/Verilog_Clock/baoshi.v    ;         ;
++----------------------------------+-----------------+------------------------+-----------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 566          ;
+;                                             ;              ;
+; Total combinational functions               ; 552          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 254          ;
+;     -- 3 input functions                    ; 94           ;
+;     -- <=2 input functions                  ; 204          ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 430          ;
+;     -- arithmetic mode                      ; 122          ;
+;                                             ;              ;
+; Total registers                             ; 263          ;
+;     -- Dedicated logic registers            ; 263          ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 37           ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+; Maximum fan-out node                        ; fenpin:fen|f ;
+; Maximum fan-out                             ; 121          ;
+; Total fan-out                               ; 2335         ;
+; Average fan-out                             ; 2.74         ;
++---------------------------------------------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                             ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name     ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
+; |Clock                     ; 552 (0)           ; 263 (0)      ; 0           ; 0            ; 0       ; 0         ; 37   ; 0            ; |Clock                  ;              ;
+;    |baoshi:comb_4|         ; 3 (3)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|baoshi:comb_4    ;              ;
+;    |fenpin:fen|            ; 154 (154)         ; 94 (94)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|fenpin:fen       ;              ;
+;    |jishi:ji|              ; 75 (75)           ; 44 (44)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|jishi:ji         ;              ;
+;    |modchose:mc|           ; 16 (16)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|modchose:mc      ;              ;
+;    |paobiao:pao|           ; 58 (58)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|paobiao:pao      ;              ;
+;    |print1:p1|             ; 150 (150)         ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|print1:p1        ;              ;
+;    |print2:p2|             ; 87 (87)           ; 19 (19)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|print2:p2        ;              ;
+;    |print3:p3|             ; 7 (7)             ; 9 (9)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|print3:p3        ;              ;
+;    |zhuangtai:comb_3|      ; 2 (2)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Clock|zhuangtai:comb_3 ;              ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++----------------------------------------+---------------------------------------------+
+; Register name                          ; Reason for Removal                          ;
++----------------------------------------+---------------------------------------------+
+; print4:p4|r[2,3]                       ; Stuck at GND due to stuck port clock_enable ;
+; print4:p4|row[0..7]                    ; Stuck at GND due to stuck port data_in      ;
+; print4:p4|line[0..7]                   ; Stuck at GND due to stuck port data_in      ;
+; print3:p3|led_dig[4]                   ; Stuck at VCC due to stuck port data_in      ;
+; print1:p1|led_dig[6,7]                 ; Stuck at VCC due to stuck port data_in      ;
+; print4:p4|r[0,1]                       ; Stuck at GND due to stuck port clock_enable ;
+; print3:p3|display[1..5]                ; Merged with print3:p3|display[0]            ;
+; print3:p3|o[3]                         ; Merged with print2:p2|o[3]                  ;
+; print3:p3|o[2]                         ; Merged with print2:p2|o[2]                  ;
+; print3:p3|o[1]                         ; Merged with print2:p2|o[1]                  ;
+; print3:p3|o[0]                         ; Merged with print2:p2|o[0]                  ;
+; print3:p3|i[0]                         ; Merged with print1:p1|i[0]                  ;
+; print3:p3|i[1]                         ; Merged with print1:p1|i[1]                  ;
+; print3:p3|i[2]                         ; Merged with print1:p1|i[2]                  ;
+; print3:p3|i[3]                         ; Merged with print1:p1|i[3]                  ;
+; print3:p3|i[4]                         ; Merged with print1:p1|i[4]                  ;
+; print3:p3|i[5]                         ; Merged with print1:p1|i[5]                  ;
+; print3:p3|i[6]                         ; Merged with print1:p1|i[6]                  ;
+; print3:p3|i[7]                         ; Merged with print1:p1|i[7]                  ;
+; print3:p3|i[8]                         ; Merged with print1:p1|i[8]                  ;
+; print3:p3|i[9]                         ; Merged with print1:p1|i[9]                  ;
+; print3:p3|i[10]                        ; Merged with print1:p1|i[10]                 ;
+; print3:p3|i[11]                        ; Merged with print1:p1|i[11]                 ;
+; print3:p3|i[12]                        ; Merged with print1:p1|i[12]                 ;
+; print3:p3|i[13]                        ; Merged with print1:p1|i[13]                 ;
+; print3:p3|i[14]                        ; Merged with print1:p1|i[14]                 ;
+; print3:p3|i[15]                        ; Merged with print1:p1|i[15]                 ;
+; print3:p3|i[16]                        ; Merged with print1:p1|i[16]                 ;
+; print3:p3|i[17]                        ; Merged with print1:p1|i[17]                 ;
+; print3:p3|i[18]                        ; Merged with print1:p1|i[18]                 ;
+; print3:p3|i[19]                        ; Merged with print1:p1|i[19]                 ;
+; print3:p3|i[20]                        ; Merged with print1:p1|i[20]                 ;
+; print3:p3|i[21]                        ; Merged with print1:p1|i[21]                 ;
+; print3:p3|i[22]                        ; Merged with print1:p1|i[22]                 ;
+; print3:p3|i[23]                        ; Merged with print1:p1|i[23]                 ;
+; print3:p3|i[24]                        ; Merged with print1:p1|i[24]                 ;
+; print3:p3|i[25]                        ; Merged with print1:p1|i[25]                 ;
+; print3:p3|i[26]                        ; Merged with print1:p1|i[26]                 ;
+; print3:p3|i[27]                        ; Merged with print1:p1|i[27]                 ;
+; print3:p3|i[28]                        ; Merged with print1:p1|i[28]                 ;
+; print3:p3|i[29]                        ; Merged with print1:p1|i[29]                 ;
+; print3:p3|i[30]                        ; Merged with print1:p1|i[30]                 ;
+; print3:p3|i[31]                        ; Merged with print1:p1|i[31]                 ;
+; print3:p3|delay                        ; Merged with print1:p1|delay                 ;
+; jishi:ji|k1[1]                         ; Lost fanout                                 ;
+; print3:p3|display[7]                   ; Stuck at GND due to stuck port data_in      ;
+; print1:p1|o[0]                         ; Merged with print2:p2|o[0]                  ;
+; fenpin:fen|i[0]                        ; Merged with fenpin:fen|k[0]                 ;
+; fenpin:fen|j[0]                        ; Merged with fenpin:fen|k[0]                 ;
+; print1:p1|o[1]                         ; Merged with print2:p2|o[1]                  ;
+; fenpin:fen|i[1]                        ; Merged with fenpin:fen|j[1]                 ;
+; fenpin:fen|i[2]                        ; Merged with fenpin:fen|j[2]                 ;
+; fenpin:fen|i[3]                        ; Merged with fenpin:fen|j[3]                 ;
+; print2:p2|o[3]                         ; Stuck at GND due to stuck port data_in      ;
+; Total Number of Removed Registers = 75 ;                                             ;
++----------------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                           ;
++------------------+---------------------------+----------------------------------------+
+; Register name    ; Reason for Removal        ; Registers Removed due to This Register ;
++------------------+---------------------------+----------------------------------------+
+; print4:p4|row[2] ; Stuck at GND              ; print4:p4|r[1]                         ;
+;                  ; due to stuck port data_in ;                                        ;
+; print4:p4|row[3] ; Stuck at GND              ; print4:p4|r[0]                         ;
+;                  ; due to stuck port data_in ;                                        ;
++------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 263   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 34    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 48    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |Clock|modchose:mc|lego[6]  ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 26 LEs               ; 0 LEs                  ; Yes        ; |Clock|modchose:mc|diso[1]  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Clock|jishi:ji|b[3]        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Clock|jishi:ji|c[3]        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Clock|jishi:ji|d[3]        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Clock|jishi:ji|e[0]        ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 24 LEs               ; 6 LEs                  ; Yes        ; |Clock|print1:p1|led_dig[1] ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Clock|paobiao:pao|a[3]     ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |Clock|jishi:ji|cc[3]       ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |Clock|jishi:ji|ee[1]       ;
+; 16:1               ; 8 bits    ; 80 LEs        ; 40 LEs               ; 40 LEs                 ; Yes        ; |Clock|print2:p2|led_dig[2] ;
+; 16:1               ; 9 bits    ; 90 LEs        ; 36 LEs               ; 54 LEs                 ; Yes        ; |Clock|print3:p3|display[6] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Clock|paobiao:pao|d[3]     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Clock|paobiao:pao|b[0]     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Clock|paobiao:pao|c[0]     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Clock|paobiao:pao|f[1]     ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |Clock|paobiao:pao|e[0]     ;
+; 106:1              ; 5 bits    ; 350 LEs       ; 70 LEs               ; 280 LEs                ; Yes        ; |Clock|print2:p2|display[5] ;
+; 102:1              ; 5 bits    ; 340 LEs       ; 70 LEs               ; 270 LEs                ; Yes        ; |Clock|print1:p1|display[5] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "print4:p4"                                                                                                                                     ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                                                                      ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; linerow ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fenpin:fen"                                                                                                ;
++--------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                                  ;
++--------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; f500Hz ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+    Info: Processing started: Wed Jan 11 09:44:51 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Clock -c Clock
+Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file modchose.v
+    Info (12023): Found entity 1: modchose
+Info (12021): Found 1 design units, including 1 entities, in source file zhuangtai.v
+    Info (12023): Found entity 1: zhuangtai
+Info (12021): Found 1 design units, including 1 entities, in source file print4.v
+    Info (12023): Found entity 1: print4
+Info (12021): Found 1 design units, including 1 entities, in source file print3.v
+    Info (12023): Found entity 1: print3
+Info (12021): Found 1 design units, including 1 entities, in source file print2.v
+    Info (12023): Found entity 1: print2
+Info (12021): Found 1 design units, including 1 entities, in source file print1.v
+    Info (12023): Found entity 1: print1
+Info (12021): Found 1 design units, including 1 entities, in source file paobiao.v
+    Info (12023): Found entity 1: paobiao
+Info (12021): Found 1 design units, including 1 entities, in source file naozhong.v
+    Info (12023): Found entity 1: naozhong
+Info (12021): Found 1 design units, including 1 entities, in source file jishi.v
+    Info (12023): Found entity 1: jishi
+Info (12021): Found 1 design units, including 1 entities, in source file fenpin.v
+    Info (12023): Found entity 1: fenpin
+Info (12021): Found 1 design units, including 1 entities, in source file clock.v
+    Info (12023): Found entity 1: Clock
+Info (12021): Found 1 design units, including 1 entities, in source file baoshi.v
+    Info (12023): Found entity 1: baoshi
+Info (12021): Found 1 design units, including 1 entities, in source file block1.bdf
+    Info (12023): Found entity 1: Block1
+Critical Warning (10846): Verilog HDL Instantiation warning at Clock.v(49): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at Clock.v(60): instance has no name
+Info (12127): Elaborating entity "Clock" for the top level hierarchy
+Info (12128): Elaborating entity "zhuangtai" for hierarchy "zhuangtai:comb_3"
+Info (12128): Elaborating entity "modchose" for hierarchy "modchose:mc"
+Info (12128): Elaborating entity "fenpin" for hierarchy "fenpin:fen"
+Info (12128): Elaborating entity "jishi" for hierarchy "jishi:ji"
+Info (12128): Elaborating entity "print1" for hierarchy "print1:p1"
+Info (12128): Elaborating entity "paobiao" for hierarchy "paobiao:pao"
+Info (12128): Elaborating entity "print2" for hierarchy "print2:p2"
+Info (12128): Elaborating entity "baoshi" for hierarchy "baoshi:comb_4"
+Info (12128): Elaborating entity "print3" for hierarchy "print3:p3"
+Info (12128): Elaborating entity "print4" for hierarchy "print4:p4"
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "line[0]" is stuck at GND
+    Warning (13410): Pin "line[1]" is stuck at GND
+    Warning (13410): Pin "line[2]" is stuck at GND
+    Warning (13410): Pin "line[3]" is stuck at GND
+    Warning (13410): Pin "line[4]" is stuck at GND
+    Warning (13410): Pin "line[5]" is stuck at GND
+    Warning (13410): Pin "line[6]" is stuck at GND
+    Warning (13410): Pin "line[7]" is stuck at GND
+    Warning (13410): Pin "row[0]" is stuck at GND
+    Warning (13410): Pin "row[1]" is stuck at GND
+    Warning (13410): Pin "row[2]" is stuck at GND
+    Warning (13410): Pin "row[3]" is stuck at GND
+    Warning (13410): Pin "row[4]" is stuck at GND
+    Warning (13410): Pin "row[5]" is stuck at GND
+    Warning (13410): Pin "row[6]" is stuck at GND
+    Warning (13410): Pin "row[7]" is stuck at GND
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file I:/Game/Verilog_Clock/Clock.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 609 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 33 output pins
+    Info (21061): Implemented 572 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 458 megabytes
+    Info: Processing ended: Wed Jan 11 09:44:54 2017
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in I:/Game/Verilog_Clock/Clock.map.smsg.
+
+

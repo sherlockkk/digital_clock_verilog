@@ -1,0 +1,88 @@
+# Copyright (C) 1991-2006 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		zi_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE Auto
+set_global_assignment -name TOP_LEVEL_ENTITY zi
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 6.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:07:48  MAY 07, 2008"
+set_global_assignment -name LAST_QUARTUS_VERSION 13.0
+set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "Design Compiler"
+set_global_assignment -name EDA_INPUT_VCC_NAME VDD -section_id eda_design_synthesis
+set_global_assignment -name EDA_LMF_FILE altsyn.lmf -section_id eda_design_synthesis
+set_global_assignment -name EDA_SIMULATION_TOOL "Active-HDL (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VERILOG -section_id eda_simulation
+set_global_assignment -name EDA_TIMING_ANALYSIS_TOOL "PrimeTime (VHDL)"
+set_global_assignment -name EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION ON -section_id eda_timing_analysis
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_timing_analysis
+set_global_assignment -name VERILOG_FILE zi.v
+set_location_assignment PIN_79 -to clk
+set_location_assignment PIN_67 -to dis[0]
+set_location_assignment PIN_65 -to dis[1]
+set_location_assignment PIN_64 -to dis[2]
+set_location_assignment PIN_63 -to dis[3]
+set_location_assignment PIN_68 -to dis[4]
+set_location_assignment PIN_69 -to dis[5]
+set_location_assignment PIN_70 -to dis[6]
+set_location_assignment PIN_71 -to dis[7]
+set_location_assignment PIN_192 -to key1
+set_location_assignment PIN_193 -to key2
+set_location_assignment PIN_61 -to leg[0]
+set_location_assignment PIN_58 -to leg[1]
+set_location_assignment PIN_56 -to leg[2]
+set_location_assignment PIN_55 -to leg[3]
+set_location_assignment PIN_57 -to leg[4]
+set_location_assignment PIN_60 -to leg[5]
+set_location_assignment PIN_37 -to leg[7]
+set_location_assignment PIN_39 -to leg[6]
+set_location_assignment PIN_31 -to line[0]
+set_location_assignment PIN_30 -to line[1]
+set_location_assignment PIN_29 -to line[2]
+set_location_assignment PIN_28 -to line[3]
+set_location_assignment PIN_24 -to line[4]
+set_location_assignment PIN_25 -to line[5]
+set_location_assignment PIN_26 -to line[6]
+set_location_assignment PIN_27 -to line[7]
+set_location_assignment PIN_191 -to modkey
+set_location_assignment PIN_36 -to row[0]
+set_location_assignment PIN_38 -to row[1]
+set_location_assignment PIN_18 -to row[2]
+set_location_assignment PIN_15 -to row[3]
+set_location_assignment PIN_14 -to row[4]
+set_location_assignment PIN_12 -to row[5]
+set_location_assignment PIN_13 -to row[6]
+set_location_assignment PIN_17 -to row[7]
+set_global_assignment -name VERILOG_FILE zhuangtai.v
+set_global_assignment -name VERILOG_FILE fenpin.v
+set_global_assignment -name VERILOG_FILE jishi.v
+set_global_assignment -name VERILOG_FILE ji.v
+set_global_assignment -name VERILOG_FILE mod.chose.v
+set_global_assignment -name VERILOG_FILE print1.v
+set_global_assignment -name VERILOG_FILE paobiao.v
+set_global_assignment -name VERILOG_FILE print2.v
+set_global_assignment -name VERILOG_FILE naozhong.v
+set_global_assignment -name VERILOG_FILE print3.v
+set_global_assignment -name VERILOG_FILE print4.v

@@ -1,0 +1,85 @@
+# Reading F:/altera/13.0/modelsim_ase/tcl/vsim/pref.tcl 
+# do Clock_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying F:\altera\13.0\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied F:\altera\13.0\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/modchose.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module modchose
+# 
+# Top level modules:
+# 	modchose
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/zhuangtai.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module zhuangtai
+# 
+# Top level modules:
+# 	zhuangtai
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/print4.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module print4
+# 
+# Top level modules:
+# 	print4
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/print3.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module print3
+# 
+# Top level modules:
+# 	print3
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/print2.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module print2
+# 
+# Top level modules:
+# 	print2
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/print1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module print1
+# 
+# Top level modules:
+# 	print1
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/paobiao.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module paobiao
+# 
+# Top level modules:
+# 	paobiao
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/naozhong.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module naozhong
+# 
+# Top level modules:
+# 	naozhong
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/jishi.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module jishi
+# 
+# Top level modules:
+# 	jishi
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/fenpin.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module fenpin
+# 
+# Top level modules:
+# 	fenpin
+# vlog -vlog01compat -work work +incdir+I:/Game/Verilog_Clock {I:/Game/Verilog_Clock/Clock.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module Clock
+# 
+# Top level modules:
+# 	Clock
+# 
+vsim rtl_work.print1
+# vsim rtl_work.print1 
+# Loading rtl_work.print1
+run
+add wave -position insertpoint  \
+sim:/#vsim_capacity#/totals

@@ -1,0 +1,794 @@
+module tim(clk,modkey,key1,key2,dis,leg,line,row);
+input clk;//输入的频率20MHz
+input modkey,key1,key2;//输入的三个按键
+output [7:0]dis,leg;//打印输出
+output [7:0]line,row;//闹钟相应输出
+
+wire f1;//1Hz的频率
+wire f100;//0.01Hz的频率
+wire fs;//刷新频率1kHz
+
+wire [1:0]mkoo;//状态键控制四种状态
+			   //1.正常计时（00）
+			   //2.跑表（01）
+			   //3.调时（10）
+			   //4.闹钟（11）
+wire [3:0]a,b,c,d,e,f;  //正常计时的输出秒.分.时
+						//a：秒的低位
+						//b：秒的高位
+						//c：分的低位
+						//d：分的高位
+						//e：时的低位
+						//f：时的低位
+wire [3:0]a2,b2,c2,d2,e2,f2;
+						//跑表的输出秒.分.时
+						//a2：秒的低位
+						//b2：秒的高位
+						//c2：分的低位
+						//d2：分的高位
+						//e2：时的低位
+						//f2：时的低位
+
+wire [3:0]cc,dd,ee,ff;//闹钟的输出分.时
+					  //cc：分的低位
+					  //dd：分的高位
+					  //ee：时的低位
+					  //ff：时的低位
+
+wire [7:0]leg1,dis1;//正常计时的打印输出
+wire [7:0]leg2,dis2;//跑表的打印输出
+wire [7:0]leg3,dis3; //闹钟的打印输出（LED显示）
+
+wire [1:0]k1;//调时时启动闪烁状态
+wire [1:0]kk1;//调闹钟时启动闪烁状态
+
+wire linerow;// 闹钟的打印输出（矩阵显示）
+
+zhuangtai(modkey,fs,mkoo);//判断键的状态模块（mkoo4种模式）正常计时.跑表.调时，闹钟
+					
+modchose mc(leg1,dis1,leg2,dis2,leg3,dis3,fs,mkoo,leg,dis);//选择模式输出模块
+
+fenpin fen(clk,f1,f100,fs);				//分频：秒表，跑表，刷新3个频率。
+
+jishi ji(mkoo,key1,key2,f1,fs,a,b,c,d,e,f,kk1);				//第一种模式正常计时
+print1 p1(mkoo,kk1,fs,a,b,c,d,e,f,leg1,dis1);		//计时的打印
+
+paobiao pao(f100,fs,mkoo,key1,key2,a2,b2,c2,d2,e2,f2);//跑表模块
+print2 p2(fs,a2,b2,c2,d2,e2,f2,leg2,dis2);	//跑表的打印
+
+naozhong nao(mkoo,key1,key2,f1,c,d,e,f,cc,dd,ee,ff,k1,linerow);//闹钟模块
+print3 p3(mkoo,k1,fs,cc,dd,ee,ff,leg3,dis3);//定时的打印模块
+print4 p4(fs,linerow,line,row);//闹钟相应时的输出打印模块
+endmodule
+//(2)  选择模式按键状态：
+module zhuangtai(mk,clkfs,mkoo);//（mkoo4种模式）正常计时.跑表.调时，闹钟
+input clkfs;
+input mk;
+
+output [1:0]mkoo;//用做模块之间的连接
+reg [1:0]mkoo;//存储模式选择
+
+
+always @(posedge clkfs)
+begin
+	if(mk==0)
+		begin
+			mkoo=mkoo+2'b01;
+		end
+end
+endmodule
+//（3）分频模块：
+module fenpin(clk,f1Hz,f100Hz,f);//分频：秒表，跑表，刷新3个频率
+
+input clk;
+output f1Hz,f100Hz,f;//用作模块之间的连接,定义为wire型的
+reg f1Hz,f100Hz,f;
+
+integer i,j,k;
+
+always @(posedge clk)
+begin
+	if(i==9999999)
+		begin
+			f1Hz=~f1Hz;//秒表频率1Hz
+			i=0;
+		end
+	else
+		i=i+1;	
+end 
+always @(posedge clk)
+begin
+	if(j==99999)
+		begin
+			f100Hz=~f100Hz;//跑表频率100Hz
+			j=0;
+		end
+	else
+		j=j+1;	
+end 
+always @(posedge clk)
+begin
+	if(k==9999)
+		begin
+			f=~f;//刷新频率1kHz
+			k=0;
+		end
+	else
+		k=k+1;	
+end 
+endmodule
+//（4）正常计时模块：
+module jishi(mk,key1,key2,f1Hz,clk,a,b,c,d,e,f,k1);//第一种模式正常计时
+input f1Hz,clk;
+input [1:0]mk;
+input key1,key2;
+output [3:0]a,b,c,d,e,f;
+output [1:0]k1;
+reg		[1:0]k1;
+reg    k2;
+reg  [3:0]a,b,c,d,e,f;
+reg  [3:0]cc,ee,ff;
+
+reg k1k,k2k;
+always @(posedge clk)//调时时的按键状态
+begin
+	if(mk==2'b10)//
+begin	
+	if(key1==0)//控制选择调整时间的按键
+		begin
+			if(k1k==0)
+				begin
+					 k1=k1+2'b01;(k1为2'01,2'10时则选择分,其他为小时)
+				end 
+					k1k=1;//防止按一下键有好多次触发
+		end		
+			else
+				k1k=0;
+			
+	if(key2==0)//控制时间的加
+		begin
+			if(k2k==0)
+				begin
+					k2=1'b1;
+				end 
+						k2k=1;
+		end 
+			else
+				begin
+					k2k=0;
+					k2=1'b0;
+				end
+	end
+	cc=c;
+	ee=e;
+	ff=f;
+	if(mk==2'b10&&k1==2'b00||mk==2'b10&&k1==2'b10)//调时——分
+		if(k2)//如果调整时间的按键按下
+			begin
+				cc=cc+4'b0001;
+			if(cc==4'b1010)cc=4'b0000;//如果等于10的话自动清零重新计时
+			
+			end
+	if(mk==2'b10&&k1==2'b01||mk==2'b10&&k1==2'b11)//调时——时
+		if(k2)//如果调整时间的按键按下
+			begin//ee是小时低位，ff是小时的高位
+				ee=ee+4'b0001;
+				if(ee==4'b1010||f==4'b0010&&ee==4'b0100)begin ee=4'b0000;ff=4'b0000;end//如果ee为10的话或者
+			end
+
+
+end
+always @(posedge f1Hz)//正常走时
+begin
+	c<=cc;
+	e<=ee;
+	f<=ff;//将调整的时间赋值
+	a<=a+4'b0001;//秒低位
+	if(a==4'b1001)//由秒低位向秒高位进位
+		begin
+			a<=4'b0000;
+			b<=b+4'b0001;
+		end
+	if(b==4'b0101&&a==4'b1001)//秒高位
+		begin
+			b<=4'b0000;
+			c<=c+4'b0001;
+		end
+	if(c==4'b1001)//分低位
+		begin
+			c<=4'b0000;
+			d<=d+4'b0001;
+		end
+	if(d==4'b0101&&c==4'b1001)//分高位
+		begin
+			d<=4'b0000;
+			e<=e+4'b0001;
+		end
+	if(e==4'b1001)//时低位
+		begin
+			e<=4'b0000;
+			f<=f+4'b0001;
+		end
+	if(f==4'b0010&&e==4'b0100)//时高位
+		begin
+			e<=4'b0000;
+			f<=4'b0000;
+		end
+end
+endmodule
+//（5）跑表模块：
+module paobiao(f100Hz,fs,mk,key1,key2,a,b,c,d,e,f);//跑表模块
+input f100Hz,fs;
+input [1:0]mk;
+input key1,key2;
+
+output [3:0]a,b,c,d,e,f;
+reg  [3:0]a,b,c,d,e,f;
+
+reg		[1:0]k1,k2;
+reg    k1k,k2k;
+
+
+always @(posedge fs)//跑表时的状态：清零.保持.跑表
+begin
+if(mk==2'b01)//进入到跑表状态
+		begin
+			if(key1==0)
+				begin
+					if(k1k==0)
+						begin
+							 k1=k1+2'b01;
+							if(k1==2'b11)k1=2'b00;
+						end 
+						k1k=1;
+				end 
+			else
+				k1k=0;	
+			if(key2==0)
+				begin
+					if(k2k==0)
+						begin
+							 k2=k2+2'b01;
+						end 
+						k2k=1;
+				end 
+			else
+				k2k=0;
+		end
+end
+always @(posedge f100Hz)
+begin
+	
+	if(k1==2'b01&&k2==2'b00||k1==2'b01&&k2==2'b10||k1==2'b00&&k2==2'b01)//跑表
+	begin
+		a<=a+4'b0001;//秒低位
+		if(a==4'b1001)
+			begin
+				a<=4'b0000;
+				b<=b+4'b0001;
+			
+			end
+		if(b==4'b1001&&a==4'b1001)//秒高位
+			begin
+				b<=4'b0000;
+				c<=c+4'b0001;
+			
+			end
+		if(c==4'b1001)//分低位
+			begin
+				c<=4'b0000;
+				d<=d+4'b0001;
+		
+			end
+		if(d==4'b0101&&c==4'b1001)//分高位
+			begin
+				d<=4'b0000;
+				e<=e+4'b0001;
+		
+			end
+		if(e==4'b1001)//时低位
+			begin
+				e<=4'b0000;
+				f<=f+4'b0001;
+		
+			end
+		if(f==4'b0101&&e==4'b1001)//时高位
+			begin
+				e<=4'b0000;
+				f<=4'b0000;
+			end
+	end
+	else if(k1==2'b01&&k2==2'b01||k1==2'b01&&k2==2'b11||k1==2'b10)//保持
+		begin
+			a<=a;b<=b;c<=c;d<=d;e<=e;f<=f;
+		end
+	else //清零
+		begin
+			a<=4'b0000;b<=4'b0000;c<=4'b0000;d<=4'b0000;e<=4'b0000;f<=4'b0000;
+		end
+end
+endmodule
+//（6）闹钟模块：
+module naozhong(mk,key1,key2,clk,c,d,e,f,cc,dd,ee,ff,k1,linerow);//闹钟模块
+input clk;
+input [1:0]mk;
+input key1,key2;
+input [3:0]c,d,e,f;
+
+output [3:0]cc,dd,ee,ff;
+output  [1:0]k1;
+output linerow;
+reg  [3:0]cc,dd,ee,ff;
+reg [1:0]k1;
+reg  linerow;
+
+
+reg k1k,k2k;
+reg	k2;
+
+always @(posedge clk)//定义闹钟调时时按键的状态
+begin
+if(cc==c&&dd==d&&ee==e&&ff==f)
+		begin
+			linerow=1'b1;
+			
+		end
+	else
+		linerow=1'b0;
+if(mk==2'b11)
+begin	
+	if(key1==0)
+		begin
+			if(k1k==0)
+				begin
+					 k1=k1+2'b01;
+				end 
+					k1k=1;
+		end		
+			else
+				k1k=0;
+			
+	if(key2==0)
+		begin
+			if(k2k==0)
+				begin
+					k2=1'b1;
+				end 
+						k2k=1;
+		end 
+			else
+				begin
+				k2k=0;
+				k2=1'b0;
+				end
+		
+	if(k1==2'b00||k1==2'b10)//闹钟的调时——分
+		if(k2)
+			begin
+				cc=cc+4'b0001;
+			if(cc==4'b1010)begin cc=4'b0000;dd=dd+4'b0001;
+				if(dd==4'b0110)begin dd=4'b0000;ee=ee+4'b0001;
+					if(ee==4'b1010)begin ee=4'b0000;ff=ff+4'b0001;
+									end
+								end
+							end
+			if(ff==4'b0010&&ee==4'b0100)begin ee=4'b0000;ff=4'b0000;end
+			end
+	if(k1==2'b01||k1==2'b11)//闹钟的调时——时
+		if(k2)
+			begin
+				ee=ee+4'b0001;
+				if(ee==4'b1010)begin ee=4'b0000;ff=ff+4'b0001;end									
+				if(ff==4'b0010&&ee==4'b0100)begin ee=4'b0000;ff=4'b0000;end
+			end
+	
+end
+end
+endmodule
+//（7）正常计时显示准备模块：
+module print1(mk,k1,fs,a,b,c,d,e,f,led_dig,display);//计时的打印
+input fs;
+input [1:0]mk,k1;
+input [3:0]a,b,c,d,e,f;
+
+output [7:0]led_dig,display;
+reg	   [7:0]led_dig,display;
+
+reg    [2:0]o;
+integer i;
+reg delay;
+always @(posedge fs)
+begin
+    if(i==100)
+		begin
+			delay<=~delay;
+			i<=0;
+		end
+	else
+		i<=i+1;
+	case(o)
+		3'b000:begin
+					led_dig<=8'b11101111;
+			          case(a)//秒低位选择显示
+			              4'b0000:begin display<=8'b0111111;end
+			              4'b0001:begin display<=8'b0000110;end
+			              4'b0010:begin display<=8'b1011011;end
+			              4'b0011:begin display<=8'b1001111;end
+			              4'b0100:begin display<=8'b1100110;end
+			              4'b0101:begin display<=8'b1101101;end
+			              4'b0110:begin display<=8'b1111101;end
+			              4'b0111:begin display<=8'b0000111;end
+			              4'b1000:begin display<=8'b1111111;end
+			              4'b1001:begin display<=8'b1101111;end
+			              default:;
+				 	 endcase
+				end
+       3'b001:begin
+				led_dig<=8'b11110111;
+					   case(b)//秒高位选择显示
+			              4'b0000:begin display<=8'b0111111;end
+			              4'b0001:begin display<=8'b0000110;end
+			              4'b0010:begin display<=8'b1011011;end
+			              4'b0011:begin display<=8'b1001111;end
+			              4'b0100:begin display<=8'b1100110;end
+			              4'b0101:begin display<=8'b1101101;end
+			              default:;
+		         	 endcase
+       			end
+		3'b010: begin led_dig<=8'b11111101;display<=8'b1000000;end// 显示-
+		3'b011:begin
+				led_dig<=8'b11111110;
+				if(mk==2'b10&&k1==2'b00&&delay||mk==2'b10&&k1==2'b10&&delay)begin display<=8'b0000000;end//调整的时候闪烁
+				else 
+					begin
+					   case(c)//分低位选择显示
+			              4'b0000:begin display<=8'b0111111;end
+			              4'b0001:begin display<=8'b0000110;end
+			              4'b0010:begin display<=8'b1011011;end
+			              4'b0011:begin display<=8'b1001111;end
+			              4'b0100:begin display<=8'b1100110;end
+			              4'b0101:begin display<=8'b1101101;end
+			              4'b0110:begin display<=8'b1111101;end
+			              4'b0111:begin display<=8'b0000111;end
+			              4'b1000:begin display<=8'b1111111;end
+			              4'b1001:begin display<=8'b1101111;end
+							default:;
+			          endcase
+	          		end
+				end
+      3'b100:begin
+			led_dig<=8'b11111011;
+			if(mk==2'b10&&k1==2'b00&&delay||mk==2'b10&&k1==2'b10&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+			case(d)//分高位选择显示
+	              4'b0000:begin display<=8'b0111111;end
+	              4'b0001:begin display<=8'b0000110;end
+	              4'b0010:begin display<=8'b1011011;end
+	              4'b0011:begin display<=8'b1001111;end
+	              4'b0100:begin display<=8'b1100110;end
+	              4'b0101:begin display<=8'b1101101;end
+	              default:;
+	        endcase
+			end
+       	 end		
+		3'b101: begin led_dig<=8'b01111111;display<=8'b1000000;end
+		3'b110:begin
+			   led_dig<=8'b10111111;
+				if(mk==2'b10&&k1==2'b01&&delay||mk==2'b10&&k1==2'b11&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+				case(e)//时低位选择显示
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+		              4'b0010:begin display<=8'b1011011;end
+		              4'b0011:begin display<=8'b1001111;end
+		              4'b0100:begin display<=8'b1100110;end
+		              4'b0101:begin display<=8'b1101101;end
+		              4'b0110:begin display<=8'b1111101;end
+		              4'b0111:begin display<=8'b0000111;end
+		              4'b1000:begin display<=8'b1111111;end
+		              4'b1001:begin display<=8'b1101111;end
+						default:;
+			  	endcase 
+				end            
+       			end
+		3'b111:begin
+				led_dig<=8'b11011111;
+				if(mk==2'b10&&k1==2'b01&&delay||mk==2'b10&&k1==2'b11&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+				   case(f)//时高位选择显示
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+			      4'b0010:begin display<=8'b1011011;end
+		              default:;
+		          endcase
+				end
+	      		end
+		default:;
+		endcase
+	o<=o+3'b001;
+	if(o===3'b111)o<=3'b000;	
+end//正常计时结束
+endmodule
+//（8）跑表显示准备模块:
+module print2(fs,a,b,c,d,e,f,led_dig,display);
+input fs;
+input [3:0]a,b,c,d,e,f;
+
+output [7:0]led_dig,display;
+reg	   [7:0]led_dig,display;
+
+reg    [3:0]o;
+always @(posedge fs)
+begin
+    case(o)
+		4'b0000:begin
+					led_dig<=8'b11101111;
+			          case(a)//1/100秒低位选择显示
+			              4'b0000:begin display<=8'b0111111;end
+			              4'b0001:begin display<=8'b0000110;end
+			              4'b0010:begin display<=8'b1011011;end
+			              4'b0011:begin display<=8'b1001111;end
+			              4'b0100:begin display<=8'b1100110;end
+			              4'b0101:begin display<=8'b1101101;end
+			              4'b0110:begin display<=8'b1111101;end
+			              4'b0111:begin display<=8'b0000111;end
+			              4'b1000:begin display<=8'b1111111;end
+			              4'b1001:begin display<=8'b1101111;end
+			              default:;
+				 	 endcase
+       			end
+       4'b0001:begin
+				led_dig<=8'b11110111;
+					   case(b)//1/100秒高位选择显示
+			              4'b0000:begin display<=8'b0111111;end
+			              4'b0001:begin display<=8'b0000110;end
+			              4'b0010:begin display<=8'b1011011;end
+			              4'b0011:begin display<=8'b1001111;end
+			              4'b0100:begin display<=8'b1100110;end
+			              4'b0101:begin display<=8'b1101101;end
+				      4'b0110:begin display<=8'b1111101;end
+			              4'b0111:begin display<=8'b0000111;end
+			              4'b1000:begin display<=8'b1111111;end
+			              4'b1001:begin display<=8'b1101111;end	
+			              default:;
+		         	 endcase
+       			end
+		4'b0010: begin led_dig<=8'b11111101;display<=8'b1000000;end
+		4'b0011:begin
+				led_dig<=8'b11111110;
+				   case(c)//秒低位选择显示
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+		              4'b0010:begin display<=8'b1011011;end
+		              4'b0011:begin display<=8'b1001111;end
+		              4'b0100:begin display<=8'b1100110;end
+		              4'b0101:begin display<=8'b1101101;end
+		              4'b0110:begin display<=8'b1111101;end
+		              4'b0111:begin display<=8'b0000111;end
+		              4'b1000:begin display<=8'b1111111;end
+		              4'b1001:begin display<=8'b1101111;end
+						default:;
+		          endcase
+          		end
+      4'b0100:begin
+			led_dig<=8'b11111011;
+			case(d)//秒高位选择显示
+	              4'b0000:begin display<=8'b0111111;end
+	              4'b0001:begin display<=8'b0000110;end
+	              4'b0010:begin display<=8'b1011011;end
+	              4'b0011:begin display<=8'b1001111;end
+	              4'b0100:begin display<=8'b1100110;end
+	              4'b0101:begin display<=8'b1101101;end
+	              default:;
+	        endcase
+       	 end		
+		4'b0101: begin led_dig<=8'b01111111;display<=8'b1000000;end
+		4'b0110:begin
+			   led_dig<=8'b10111111;
+				case(e)//分低位选择显示
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+		              4'b0010:begin display<=8'b1011011;end
+		              4'b0011:begin display<=8'b1001111;end
+		              4'b0100:begin display<=8'b1100110;end
+		              4'b0101:begin display<=8'b1101101;end
+		              4'b0110:begin display<=8'b1111101;end
+		              4'b0111:begin display<=8'b0000111;end
+		              4'b1000:begin display<=8'b1111111;end
+		              4'b1001:begin display<=8'b1101111;end
+						default:;
+			  	endcase             
+       			end
+		4'b0111:begin
+				led_dig<=8'b11011111;
+				   case(f)//分高位选择显示
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+		              4'b0010:begin display<=8'b1011011;end
+		              default:;
+		          endcase
+	      		end
+		default:;
+		endcase
+	o<=o+4'b0001;
+	if(o===4'b0111)o<=4'b0000;	
+end//正常计时结束
+endmodule
+//(9)闹钟准备显示模块:
+module print3(mk,k1,fs,c,d,e,f,led_dig,display);//定时的打印模块
+input fs;
+input [1:0]mk,k1;
+input [3:0]c,d,e,f;
+
+output [7:0]led_dig,display;
+reg	   [7:0]led_dig,display;
+
+reg    [3:0]o;
+integer i;
+reg delay;
+always @(posedge fs)
+begin
+    if(i==100)
+		begin
+			delay<=~delay;
+			i<=0;
+		end
+	else
+		i<=i+1;
+	case(o)
+		4'b0000:begin
+				led_dig<=8'b11101111;
+			    display<=8'b1000000;
+				end
+       4'b0001:begin
+				led_dig<=8'b11110111;
+				display<=8'b1000000;	 
+       			end
+		4'b0010: begin led_dig<=8'b11111101;display<=8'b1000000;end
+		4'b0011:begin
+				led_dig<=8'b11111110;
+				if(mk==2'b11&&k1==2'b00&&delay||mk==2'b11&&k1==2'b10&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+					   case(c)
+			              4'b0000:begin display<=8'b0111111;end
+			              4'b0001:begin display<=8'b0000110;end
+			              4'b0010:begin display<=8'b1011011;end
+			              4'b0011:begin display<=8'b1001111;end
+			              4'b0100:begin display<=8'b1100110;end
+			              4'b0101:begin display<=8'b1101101;end
+			              4'b0110:begin display<=8'b1111101;end
+			              4'b0111:begin display<=8'b0000111;end
+			              4'b1000:begin display<=8'b1111111;end
+			              4'b1001:begin display<=8'b1101111;end
+							default:;
+			          endcase
+	          		end
+				end
+      4'b0100:begin
+			led_dig<=8'b11111011;
+			if(mk==2'b11&&k1==2'b00&&delay||mk==2'b10&&k1==2'b10&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+			case(d)
+	              4'b0000:begin display<=8'b0111111;end
+	              4'b0001:begin display<=8'b0000110;end
+	              4'b0010:begin display<=8'b1011011;end
+	              4'b0011:begin display<=8'b1001111;end
+	              4'b0100:begin display<=8'b1100110;end
+	              4'b0101:begin display<=8'b1101101;end
+	              default:;
+	        endcase
+			end
+       	 end		
+		4'b0101: begin led_dig<=8'b01111111;display<=8'b1000000;end
+		4'b0110:begin
+			   led_dig<=8'b10111111;
+				if(mk==2'b11&&k1==2'b01&&delay||mk==2'b11&&k1==2'b11&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+				case(e)
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+		              4'b0010:begin display<=8'b1011011;end
+		              4'b0011:begin display<=8'b1001111;end
+		              4'b0100:begin display<=8'b1100110;end
+		              4'b0101:begin display<=8'b1101101;end
+		              4'b0110:begin display<=8'b1111101;end
+		              4'b0111:begin display<=8'b0000111;end
+		              4'b1000:begin display<=8'b1111111;end
+		              4'b1001:begin display<=8'b1101111;end
+						default:;
+			  	endcase 
+				end            
+       			end
+		4'b0111:begin
+				led_dig<=8'b11011111;
+				if(mk==2'b11&&k1==2'b01&&delay||mk==2'b11&&k1==2'b11&&delay)begin display<=8'b0000000;end
+				else 
+					begin
+				   case(f)
+		              4'b0000:begin display<=8'b0111111;end
+		              4'b0001:begin display<=8'b0000110;end
+		              4'b0010:begin display<=8'b1011011;end
+		              default:;
+		          endcase
+				end
+	      		end
+		default:;
+		endcase
+	o<=o+4'b0001;
+	if(o===4'b0111)o<=4'b0000;	
+end//正常计时结束
+endmodule
+//（10）闹钟响应时的准备显示模块：
+module  print4(fs,linerow,line,row);//闹钟响应时矩阵的显示模块（显示时间1s）
+input fs;
+input linerow;
+output [7:0]line,row;
+reg 	[7:0]line,row;
+reg  [3:0]r; 
+always @(posedge fs)
+begin
+	case(linerow)
+	1'b1:begin 
+		case(r)
+			4'b0000:begin line<=8'b00000001;row<=8'b10000001;end
+			4'b0001:begin line<=8'b00000010;row<=8'b01111110;end
+			4'b0010:begin line<=8'b00000100;row<=8'b01001010;end
+			4'b0011:begin line<=8'b00001000;row<=8'b00111110;end
+			4'b0100:begin line<=8'b00010000;row<=8'b00111110;end
+			4'b0101:begin line<=8'b00100000;row<=8'b01001010;end
+			4'b0110:begin line<=8'b01000000;row<=8'b01111110;end
+			4'b0111:begin line<=8'b10000000;row<=8'b10000001;end
+				default:;
+				endcase
+				r<=r+4'b0001;
+			if(r==4'b0111)r<=4'b0000;
+		end 
+	default:begin line<=8'b00000000;row<=8'b00000000;end
+	endcase
+end
+endmodule
+//（11）选择显示输出模块：
+module modchose(leg1,dis1,leg2,dis2,leg3,dis3,clk,modkey,lego,diso);//选择模式最后输出显示模块
+input clk;
+input [1:0]modkey;
+input [7:0]leg1,dis1;
+input [7:0]leg2,dis2;
+input [7:0]leg3,dis3;
+
+output [7:0]lego,diso;
+reg	[7:0]lego,diso;
+
+
+always @(posedge clk)
+begin
+	case(modkey)
+	
+ 	2'b00://正常计时显示
+	begin
+			lego<=leg1;
+			diso<=dis1;
+		end
+	2'b01://跑表显示
+	 	begin
+			lego<=leg2;
+			diso<=dis2;
+		end
+	2'b10://调时显示
+	 	begin
+			lego<=leg1;
+			diso<=dis1;
+		end
+	2'b11://闹钟显示
+	 	begin
+			lego<=leg3;
+			diso<=dis3;
+		end
+	endcase
+end
+endmodule

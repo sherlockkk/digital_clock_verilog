@@ -1,0 +1,36 @@
+|beep
+out <= LessThan0.DB_MAX_OUTPUT_PORT_TYPE
+clk => R_cnt[0].CLK
+clk => R_cnt[1].CLK
+clk => R_cnt[2].CLK
+clk => R_cnt[3].CLK
+clk => R_cnt[4].CLK
+clk => R_cnt[5].CLK
+clk => R_cnt[6].CLK
+clk => R_cnt[7].CLK
+clk => R_cnt[8].CLK
+clk => R_cnt[9].CLK
+clk => R_cnt[10].CLK
+clk => R_cnt[11].CLK
+clk => R_cnt[12].CLK
+clk => R_cnt[13].CLK
+clk => R_cnt[14].CLK
+clk => R_cnt[15].CLK
+clk => R_cnt[16].CLK
+clk => R_cnt[17].CLK
+clk => R_cnt[18].CLK
+clk => R_cnt[19].CLK
+clk => R_cnt[20].CLK
+clk => R_cnt[21].CLK
+clk => R_cnt[22].CLK
+clk => R_cnt[23].CLK
+clk => R_cnt[24].CLK
+clk => R_cnt[25].CLK
+clk => R_cnt[26].CLK
+clk => R_cnt[27].CLK
+clk => R_cnt[28].CLK
+clk => R_cnt[29].CLK
+clk => R_cnt[30].CLK
+clk => R_cnt[31].CLK
+
+

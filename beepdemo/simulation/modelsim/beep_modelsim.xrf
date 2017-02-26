@@ -1,0 +1,6 @@
+vendor_name = ModelSim
+source_file = 1, I:/Game/beepdemo/beep.v
+source_file = 1, I:/Game/beepdemo/db/beep.cbx.xml
+design_name = beep
+instance = comp, \out~I\, out, beep, 1
+instance = comp, \clk~I\, clk, beep, 1

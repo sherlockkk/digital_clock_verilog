@@ -1,0 +1,101 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'fenpin:fen|f'
+Slack : -5.123
+TNS   : -350.451
+
+Type  : Slow Model Setup 'clk'
+Slack : -4.859
+TNS   : -324.592
+
+Type  : Slow Model Setup 'fenpin:fen|f100Hz'
+Slack : -3.765
+TNS   : -82.331
+
+Type  : Slow Model Setup 'fenpin:fen|f1Hz'
+Slack : -3.331
+TNS   : -56.704
+
+Type  : Slow Model Hold 'clk'
+Slack : -2.656
+TNS   : -9.295
+
+Type  : Slow Model Hold 'fenpin:fen|f'
+Slack : 0.499
+TNS   : 0.000
+
+Type  : Slow Model Hold 'fenpin:fen|f100Hz'
+Slack : 0.499
+TNS   : 0.000
+
+Type  : Slow Model Hold 'fenpin:fen|f1Hz'
+Slack : 0.499
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'clk'
+Slack : -1.941
+TNS   : -142.921
+
+Type  : Slow Model Minimum Pulse Width 'fenpin:fen|f'
+Slack : -0.742
+TNS   : -178.080
+
+Type  : Slow Model Minimum Pulse Width 'fenpin:fen|f100Hz'
+Slack : -0.742
+TNS   : -35.616
+
+Type  : Slow Model Minimum Pulse Width 'fenpin:fen|f1Hz'
+Slack : -0.742
+TNS   : -35.616
+
+Type  : Fast Model Setup 'clk'
+Slack : -1.111
+TNS   : -52.045
+
+Type  : Fast Model Setup 'fenpin:fen|f'
+Slack : -1.045
+TNS   : -43.540
+
+Type  : Fast Model Setup 'fenpin:fen|f100Hz'
+Slack : -0.557
+TNS   : -11.181
+
+Type  : Fast Model Setup 'fenpin:fen|f1Hz'
+Slack : -0.537
+TNS   : -4.957
+
+Type  : Fast Model Hold 'clk'
+Slack : -1.433
+TNS   : -5.378
+
+Type  : Fast Model Hold 'fenpin:fen|f'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Hold 'fenpin:fen|f100Hz'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Hold 'fenpin:fen|f1Hz'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'clk'
+Slack : -1.380
+TNS   : -96.380
+
+Type  : Fast Model Minimum Pulse Width 'fenpin:fen|f'
+Slack : -0.500
+TNS   : -120.000
+
+Type  : Fast Model Minimum Pulse Width 'fenpin:fen|f100Hz'
+Slack : -0.500
+TNS   : -24.000
+
+Type  : Fast Model Minimum Pulse Width 'fenpin:fen|f1Hz'
+Slack : -0.500
+TNS   : -24.000
+
+------------------------------------------------------------
